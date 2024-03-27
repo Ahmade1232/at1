@@ -1,0 +1,15 @@
+
+{% extends "eduprod/layout.html" %}
+{% block body %}
+<div id="content" data-questions='{{ questions_json|safe }}'></div>
+<select id="dropdown">
+    <option value="option1">HTML</option>
+    <option value="option2">2</option>
+    <option value="option3">4</option>
+    <option value="option4">6</option>
+    <option value="option5">8</option>
+    <option value="option6">10</option>
+    <option value="option7">12</option>
+  </select>
+<button id="revealBtn">Reveal Answer</button> 
+{% endblock %}
