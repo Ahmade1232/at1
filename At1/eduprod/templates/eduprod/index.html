@@ -1,0 +1,40 @@
+{% extends "eduprod/layout.html" %}
+{% block body %}
+<div id="content" data-questions='{{ questions_json|safe }}'></div>
+<input type="text" id="textInput">
+<button id="revealBtn">Reveal Answer</button> 
+<p id="feedback"></p>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    var questions = JSON.parse(document.getElementById('content').getAttribute('data-questions'));
+    var textInput = document.getElementById('textInput');
+    var revealBtn = document.getElementById('revealBtn');
+    var feedback = document.getElementById('feedback');
+    var currentQuestionIndex = 0;
+
+    // Function to display the next question
+    function displayNextQuestion() {
+      if (currentQuestionIndex < questions.length) {
+        textInput.value = ''; // Clear the text input
+        textInput.placeholder = questions[currentQuestionIndex].question; // Display the next question as placeholder
+        feedback.innerText = ''; // Clear feedback
+        currentQuestionIndex++;
+      } else {
+        feedback.innerText = ''; // Clear feedback
+        textInput.value = ''; // Display completion message
+        textInput.disabled = false; // Disable the text input when all questions are answered
+        revealBtn.disabled = false; // Disable the reveal button when all questions are answered
+      }
+    }
+
+    // Display the first question when the page loads
+    displayNextQuestion();
+
+    // Event listener for the reveal button
+    revealBtn.addEventListener('click', function() {
+      displayNextQuestion();
+    });
+  });
+</script>
+{% endblock %}

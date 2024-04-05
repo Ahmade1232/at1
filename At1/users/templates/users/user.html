@@ -1,0 +1,11 @@
+{% extends "users/layout.html" %}
+{% block body %}
+    <h1>Welcome, {{ request.user.first_name }}</h1>
+    <ul>
+        <li>Username: {{ request.user.username }}</li>
+        <li>Email: {{ request.user.email }}</li>
+    </ul>
+    <a href="{% url 'logout' %}">Log Out</a>
+    <a href="{% url 'eduprod:index' %}" class="btn btn-primary">Go to EduProd App</a>
+
+{% endblock %}
